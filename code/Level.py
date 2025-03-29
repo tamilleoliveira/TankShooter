@@ -15,15 +15,24 @@ class Level:
         entity = EntityFactory.get_entity('Level1Bg')
         if isinstance(entity, list):
             self.entity_list.extend(entity)
-        else:
+        elif entity is not None:
             self.entity_list.append(entity)
 
-    def run(self):
-        running = True
+    def run(self, player_score: list[int]):
+        # Carregar e reproduzir música de fundo
+        try:
+            pygame.mixer.music.load(f'./assets/{self.name}.mp3')
+            pygame.mixer.music.set_volume(0.3)
+            pygame.mixer.music.play(-1)
+        except pygame.error as e:
+            print(f"Erro ao carregar a música: {e}")
+
         clock = pygame.time.Clock()
 
+        running = True
         while running:
-            # Lidar com eventos do Pygame
+            clock.tick(60)
+
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     running = False
@@ -35,7 +44,5 @@ class Level:
 
             pygame.display.update()
 
-            # Controlar a taxa de quadros (ex: 60 FPS)
-            clock.tick(60)
-
+        pygame.mixer.music.stop()
         pygame.quit()

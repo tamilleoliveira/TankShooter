@@ -25,12 +25,8 @@ class Menu:
 
     def run(self):
         menu_option = 0
-
-        try:
-            pygame.mixer_music.load('./assets/Menu.mp3')
-            pygame.mixer_music.play(-1)
-        except pygame.error as e:
-            print(f"Erro ao carregar a música: {e}")
+        pygame.mixer_music.load('./assets/Menu.mp3')
+        pygame.mixer_music.play(-1)
 
         clock = pygame.time.Clock()
 

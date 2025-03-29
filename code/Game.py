@@ -26,7 +26,7 @@ class Game:
             if menu_return == MENU_OPTION[0]:
                 player_score = [0, 0]
                 level = Level(self.window, 'Level 1', menu_return, player_score)
-                level.run()
+                level.run(player_score)
 
             elif menu_return == MENU_OPTION[1]:
                 pass
